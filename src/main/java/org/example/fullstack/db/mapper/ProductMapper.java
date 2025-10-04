@@ -14,4 +14,5 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING, uses = ProductMapper.class)
 public interface ProductMapper {
     Product productCreateRequestToProduct(ProductCreateRequest request);
+    ProductDto productToProductDto(Product product);
 }

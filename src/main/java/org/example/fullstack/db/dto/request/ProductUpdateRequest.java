@@ -8,7 +8,17 @@ import java.math.BigDecimal;
 /**
  * DTO for {@link Product}
  */
-public record ProductUpdateRequest(String name, String description, Double weight, Double length, Double width, Double height,
-                                   ProductCategory category, Boolean isFragile, Boolean requiresColdStorage, Boolean isValuable,
-                                   BigDecimal declaredValue, Long receiverId, Long orderId) {
+public record ProductUpdateRequest(String name,
+                                   String description,
+                                   Double weight,
+                                   Double length,
+                                   Double width,
+                                   Double height,
+                                   ProductCategory category,
+                                   Boolean isFragile,
+                                   Boolean requiresColdStorage,
+                                   Boolean isValuable,
+                                   BigDecimal declaredValue,
+                                   Long receiverId,
+                                   Long orderId) {
 }

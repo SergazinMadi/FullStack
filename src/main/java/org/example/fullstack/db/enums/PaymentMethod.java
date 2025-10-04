@@ -6,14 +6,13 @@ import lombok.Getter;
 public enum PaymentMethod {
     CASH("Наличные"),
     CARD("Банковская карта"),
-    ONLINE("Онлайн-оплата"),
     BANK_TRANSFER("Банковский перевод"),
-    PREPAID("Предоплата");
+    ELECTRONIC_WALLET("Электронный кошелек"),
+    CRYPTO("Криптовалюта");
     
     private final String displayName;
     
     PaymentMethod(String displayName) {
         this.displayName = displayName;
     }
-
 }

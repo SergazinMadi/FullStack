@@ -4,17 +4,16 @@ import lombok.Getter;
 
 @Getter
 public enum PickupPointType {
-    POSTAL_OFFICE("Почтовое отделение"),
-    PICKUP_LOCKER("Постамат"),
-    STORE_PICKUP("Магазин-партнер"),
     WAREHOUSE("Склад"),
-    GAS_STATION("АЗС"),
-    SHOPPING_MALL("ТЦ");
+    RETAIL_STORE("Розничный магазин"),
+    POST_OFFICE("Почтовое отделение"),
+    COURIER_OFFICE("Офис курьерской службы"),
+    MOBILE_POINT("Мобильный пункт"),
+    HOME_DELIVERY("Адресная доставка");
     
     private final String displayName;
     
     PickupPointType(String displayName) {
         this.displayName = displayName;
     }
-
 }

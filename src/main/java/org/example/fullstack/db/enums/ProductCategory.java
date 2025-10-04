@@ -5,13 +5,15 @@ import lombok.Getter;
 @Getter
 public enum ProductCategory {
     DOCUMENTS("Документы"),
-    ELECTRONICS("Электроника"),
     CLOTHING("Одежда"),
+    ELECTRONICS("Электроника"),
     FOOD("Продукты питания"),
+    MEDICINE("Медикаменты"),
+    FRAGILE("Хрупкие товары"),
+    VALUABLES("Ценные вещи"),
     FURNITURE("Мебель"),
-    AUTOMOTIVE("Автозапчасти"),
+    APPLIANCES("Бытовая техника"),
     BOOKS("Книги"),
-    HOUSEHOLD("Бытовые товары"),
     OTHER("Прочее");
     
     private final String displayName;
@@ -19,5 +21,4 @@ public enum ProductCategory {
     ProductCategory(String displayName) {
         this.displayName = displayName;
     }
-
 }

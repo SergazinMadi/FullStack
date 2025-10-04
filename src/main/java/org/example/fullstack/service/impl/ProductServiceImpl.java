@@ -2,6 +2,7 @@ package org.example.fullstack.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.fullstack.db.dto.dto.ProductDto;
 import org.example.fullstack.db.dto.request.ProductCreateRequest;
 import org.example.fullstack.db.dto.request.ProductUpdateRequest;
@@ -19,6 +20,7 @@ import org.example.fullstack.service.ProductService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -28,13 +30,19 @@ public class ProductServiceImpl implements ProductService {
     private final ProductStatusHistoryRepository productStatusHistoryRepository;
     
     @Override
-    public ProductDto createProduct(Long user_id, ProductCreateRequest request) {
-        User user = userRepository.getUserById(user_id).orElseThrow();
+    public ProductDto createProduct(User user, ProductCreateRequest request) {
+        log.debug("Creating product for user {}", user);
+        log.info("Creating product for user {}", request);
         Product product = productMapper.productCreateRequestToProduct(request);
-        if (user.getRole() == UserRole.MANAGER) {
-            productStatusHistoryRepository.create()
-        }
-        product.set
+        product.setSender(user);
+        ProductDto productDto = productMapper.productToProductDto(productRepository.save(product));
+
+        ProductStatusHistory productStatusHistory = new ProductStatusHistory();
+        productStatusHistory.setProduct(product);
+        productStatusHistory.setStatus(ProductStatus.CREATED);
+        productStatusHistoryRepository.save(productStatusHistory);
+
+        return productDto;
     }
 
     @Override
