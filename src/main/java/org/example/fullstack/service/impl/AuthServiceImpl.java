@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.fullstack.db.dto.request.LoginRequest;
 import org.example.fullstack.db.dto.request.RegistrationRequest;
 import org.example.fullstack.db.dto.response.AuthResponse;
+import org.example.fullstack.db.enums.UserRole;
 import org.example.fullstack.db.mapper.UserMapper;
 import org.example.fullstack.db.model.User;
 import org.example.fullstack.db.repository.UserRepository;
@@ -34,6 +35,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         User user = userMapper.registrationRequestToUser(request);
+        user.setRole(UserRole.valueOf(request.role()));
         user.setPassword(passwordEncoder.encode(request.password()));
         userRepository.save(user);
 

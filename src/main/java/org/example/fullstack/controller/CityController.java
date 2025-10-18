@@ -17,7 +17,6 @@ public class CityController {
     private final CityService cityService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<CityDto> createCity(@RequestBody CityCreateRequest request) {
         CityDto city = cityService.createCity(request);
         return ResponseEntity.ok(city);
@@ -42,7 +41,6 @@ public class CityController {
     }
 
     @PutMapping("/{cityId}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<CityDto> updateCity(@PathVariable Long cityId, 
                                              @RequestBody CityCreateRequest request) {
         CityDto city = cityService.updateCity(cityId, request);

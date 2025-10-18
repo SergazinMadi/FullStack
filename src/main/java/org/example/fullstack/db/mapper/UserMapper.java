@@ -8,7 +8,7 @@ import org.mapstruct.*;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
     @Mapping(target = "password", ignore = true)
-    @Mapping(target = "role", expression = "java(org.example.fullstack.db.enums.UserRole.valueOf(request.role()))")
+    @Mapping(target = "role", ignore = true)
     User registrationRequestToUser(RegistrationRequest registrationRequest);
     
     UserDto userToUserDto(User user);

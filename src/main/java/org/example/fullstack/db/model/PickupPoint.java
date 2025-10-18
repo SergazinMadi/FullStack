@@ -1,6 +1,8 @@
 package org.example.fullstack.db.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.fullstack.db.enums.PickupPointType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "pickup_points")
+@Getter
+@Setter
 public class PickupPoint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

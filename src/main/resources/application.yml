@@ -2,9 +2,9 @@ spring:
   application:
     name: fullstack-logistics
   datasource:
-    url: jdbc:postgresql://localhost:5432/logistics_db
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:password}
+    url: jdbc:postgresql://localhost:5432/full_stack
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -30,8 +30,8 @@ server:
     context-path: /api
 
 jwt:
-  secret: ${JWT_SECRET:mySecretKey123456789012345678901234567890}
-  expiration: ${JWT_EXPIRATION:86400000} # 24 hours in milliseconds
+  secret: 4D635166546A576E5A7234753778214125442A472D4B6150645367566B597033
+  expiration: 86400000 # 24 hours in milliseconds
 
 logging:
   level:
@@ -39,11 +39,6 @@ logging:
     org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file:
-    name: logs/application.log
 
 management:
   endpoints:
@@ -54,9 +49,9 @@ management:
     health:
       show-details: always
 
-springdoc:
-  api-docs:
-    path: /v3/api-docs
-  swagger-ui:
-    path: /swagger-ui.html
-    operationsSorter: method
+  springdoc:
+    api-docs:
+      enabled: true
+    swagger-ui:
+      enabled: true
+      path: /swagger-ui.html

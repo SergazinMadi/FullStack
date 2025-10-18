@@ -1,5 +1,6 @@
 package org.example.fullstack.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.fullstack.db.dto.dto.OrderDto;
@@ -13,7 +14,6 @@ import org.example.fullstack.db.repository.OrderRepository;
 import org.example.fullstack.db.repository.UserRepository;
 import org.example.fullstack.service.OrderService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;

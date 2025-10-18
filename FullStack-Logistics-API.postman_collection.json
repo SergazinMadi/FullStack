@@ -1,0 +1,981 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "FullStack Logistics API",
+		"description": "API коллекция для системы управления логистикой",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"role\": \"CLIENT\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Endpoints",
+			"item": [
+				{
+					"name": "Public Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/public",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Endpoint",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cities",
+			"item": [
+				{
+					"name": "Get All Cities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get City by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get City by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/name/Almaty",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"name",
+								"Almaty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create City (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Almaty\",\n  \"country\": \"Kazakhstan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update City (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Almaty Updated\",\n  \"country\": \"Kazakhstan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cities/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete City (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/cities/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pickup Points",
+			"item": [
+				{
+					"name": "Get All Pickup Points",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pickup-points",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pickup Point by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pickup-points/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pickup Points by City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pickup-points/city/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"city",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Pickup Points",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pickup-points/available/city/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"available",
+								"city",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cold Storage Pickup Points",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pickup-points/available/cold-storage/city/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"available",
+								"cold-storage",
+								"city",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Pickup Point (Admin/Manager)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Central Pickup Point\",\n  \"address\": \"123 Main Street, Almaty\",\n  \"cityId\": 1,\n  \"phone\": \"+7 777 123 4567\",\n  \"workingHours\": \"Пн-Пт: 9:00-18:00, Сб-Вс: 10:00-16:00\",\n  \"latitude\": 43.2220,\n  \"longitude\": 76.8512,\n  \"maxCapacity\": 100,\n  \"maxPackageWeight\": 50.0,\n  \"hasColdStorage\": true,\n  \"type\": \"WAREHOUSE\",\n  \"managerId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pickup-points",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Pickup Point (Admin/Manager)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Central Pickup Point Updated\",\n  \"address\": \"123 Main Street, Almaty\",\n  \"cityId\": 1,\n  \"phone\": \"+7 777 123 4567\",\n  \"workingHours\": \"Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-17:00\",\n  \"latitude\": 43.2220,\n  \"longitude\": 76.8512,\n  \"maxCapacity\": 150,\n  \"maxPackageWeight\": 60.0,\n  \"hasColdStorage\": true,\n  \"isActive\": true,\n  \"type\": \"WAREHOUSE\",\n  \"managerId\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pickup-points/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Pickup Point Load (Admin/Manager)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pickup-points/1/load?loadChange=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"1",
+								"load"
+							],
+							"query": [
+								{
+									"key": "loadChange",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Pickup Point (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/pickup-points/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pickup-points",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create Product (Client/Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Package\",\n  \"description\": \"Test package for delivery\",\n  \"weight\": 2.5,\n  \"length\": 30.0,\n  \"width\": 20.0,\n  \"height\": 15.0,\n  \"category\": \"ELECTRONICS\",\n  \"isFragile\": true,\n  \"requiresColdStorage\": false,\n  \"isValuable\": false,\n  \"declaredValue\": 1000.00,\n  \"receiverId\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product (Client/Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Test Package\",\n  \"description\": \"Updated test package for delivery\",\n  \"weight\": 3.0,\n  \"length\": 35.0,\n  \"width\": 25.0,\n  \"height\": 20.0,\n  \"category\": \"ELECTRONICS\",\n  \"isFragile\": true,\n  \"requiresColdStorage\": false,\n  \"isValuable\": true,\n  \"declaredValue\": 1500.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/products/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Status (Admin/Manager/Driver)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/1/status?status=READY_FOR_PICKUP",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "READY_FOR_PICKUP"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Products (Client/Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/my-products",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"my-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product (Client/Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/products/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order (Client/Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"driverId\": 3,\n  \"fromPointId\": 1,\n  \"toPointId\": 2,\n  \"pickupDatePlanned\": \"2024-01-15T10:00:00\",\n  \"deliveryDatePlanned\": \"2024-01-16T18:00:00\",\n  \"deliveryCost\": 1500.00,\n  \"paymentMethod\": \"CARD\",\n  \"notes\": \"Handle with care\",\n  \"specialInstructions\": \"Call before delivery\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/orders",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders/number/ORD-12345678",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"number",
+								"ORD-12345678"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders by Driver (Driver/Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/driver",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders by Status (Admin/Manager)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/status/CREATED",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"status",
+								"CREATED"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders by Date Range (Admin/Manager)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/date-range?startDate=2024-01-01T00:00:00&endDate=2024-01-31T23:59:59",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"date-range"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-01-31T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order Status (Admin/Manager/Driver)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/1/status?status=IN_TRANSIT",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "IN_TRANSIT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Driver to Order (Admin/Manager)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/1/assign-driver?driverId=3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"1",
+								"assign-driver"
+							],
+							"query": [
+								{
+									"key": "driverId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Overdue Orders (Admin/Manager)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/overdue",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"overdue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order (Admin/Manager)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"driverId\": 3,\n  \"fromPointId\": 1,\n  \"toPointId\": 2,\n  \"status\": \"ASSIGNED_TO_DRIVER\",\n  \"pickupDatePlanned\": \"2024-01-15T10:00:00\",\n  \"pickupDateActual\": \"2024-01-15T10:30:00\",\n  \"deliveryDatePlanned\": \"2024-01-16T18:00:00\",\n  \"deliveryDateActual\": null,\n  \"arrivedAtPickupPoint\": null,\n  \"deliveryCost\": 1500.00,\n  \"isPaid\": false,\n  \"paymentMethod\": \"CARD\",\n  \"notes\": \"Handle with care - Updated\",\n  \"specialInstructions\": \"Call before delivery - Updated\",\n  \"currentLocation\": \"Almaty, Kazakhstan\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/orders/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/orders/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
