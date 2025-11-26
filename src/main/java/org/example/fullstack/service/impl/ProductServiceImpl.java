@@ -1,15 +1,12 @@
 package org.example.fullstack.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.fullstack.db.dto.dto.ProductDto;
 import org.example.fullstack.db.dto.request.ProductCreateRequest;
 import org.example.fullstack.db.dto.request.ProductUpdateRequest;
 import org.example.fullstack.db.enums.ProductStatus;
-import org.example.fullstack.db.enums.UserRole;
 import org.example.fullstack.db.mapper.ProductMapper;
-import org.example.fullstack.db.mapper.UserMapper;
 import org.example.fullstack.db.model.Product;
 import org.example.fullstack.db.model.ProductStatusHistory;
 import org.example.fullstack.db.model.User;
@@ -17,8 +14,10 @@ import org.example.fullstack.db.repository.ProductRepository;
 import org.example.fullstack.db.repository.ProductStatusHistoryRepository;
 import org.example.fullstack.db.repository.UserRepository;
 import org.example.fullstack.service.ProductService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -28,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper;
     private final UserRepository userRepository;
     private final ProductStatusHistoryRepository productStatusHistoryRepository;
-    
+
     @Override
     public ProductDto createProduct(User user, ProductCreateRequest request) {
         log.debug("Creating product for user {}", user);
@@ -40,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
         ProductStatusHistory productStatusHistory = new ProductStatusHistory();
         productStatusHistory.setProduct(product);
         productStatusHistory.setStatus(ProductStatus.CREATED);
+        productStatusHistory.setChangedAt(LocalDateTime.now());
         productStatusHistoryRepository.save(productStatusHistory);
 
         return productDto;
@@ -62,6 +62,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long user_id, Long product_id) {
-
+        productRepository.deleteById(product_id);
     }
+
+    @Override
+    public List<ProductDto> getAllProducts() {
+        List<Product> products = productRepository.findAll();
+        products.forEach(product -> log.info("Found product {}", product));
+
+        return products.stream().map(productMapper::productToProductDto).toList();
+    }
+
 }

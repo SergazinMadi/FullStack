@@ -4,14 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.fullstack.db.enums.ProductCategory;
-import org.example.fullstack.db.enums.ProductStatus;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -72,5 +69,25 @@ public class Product {
     
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ", " +
+                "description = " + description + ", " +
+                "weight = " + weight + ", " +
+                "length = " + length + ", " +
+                "width = " + width + ", " +
+                "height = " + height + ", " +
+                "category = " + category + ", " +
+                "isFragile = " + isFragile + ", " +
+                "requiresColdStorage = " + requiresColdStorage + ", " +
+                "isValuable = " + isValuable + ", " +
+                "declaredValue = " + declaredValue + ", " +
+                "order = " + order + ", " +
+                "createdAt = " + createdAt + ", " +
+                "updatedAt = " + updatedAt + ")";
+    }
 }
 

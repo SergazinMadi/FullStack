@@ -66,6 +66,12 @@ public class ProductController {
     @PreAuthorize("hasAnyAuthority('CLIENT', 'ADMIN')")
     public ResponseEntity<List<ProductDto>> getMyProducts(@AuthenticationPrincipal User user) {
         // This would need to be implemented in ProductService
-        return ResponseEntity.ok(List.of());
+        return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    public ResponseEntity<List<ProductDto>> getAllProducts(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 }
